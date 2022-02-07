@@ -1,11 +1,14 @@
 /// <reference types="cypress" />
 
+
+
 //Navigation tests
 
-//This first test is to make sure that we can navigate to each category of the site
+
 context('Navigation Tests', () => {
     var URL = 'http://opencart.abstracta.us/'
 
+    //This first test is to make sure that we can navigate to each category of the site
     it('Can Navigate To Each Category', () => {
         visit(URL)
         categorynav()
@@ -15,6 +18,12 @@ context('Navigation Tests', () => {
         visit(URL)
         wishlistnav()
         
+    })
+
+    it('Can Navigate to The Cart', () => {
+        visit(URL)
+        cartnav()
+
     })
 })
 
@@ -64,9 +73,13 @@ function wishlistnav() {
         .click()
     cy.get('#wishlist-total > .fa')
         .click()
-            
-        
+}
 
+function cartnav() {
+    cy.get('#content > .row > :nth-child(1)')
+        .find('span[class="hidden-xs hidden-sm hidden-md"]')
+        .invoke('show')
+        .click()
 }
 
 
