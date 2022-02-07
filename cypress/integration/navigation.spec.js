@@ -10,6 +10,12 @@ context('Navigation Tests', () => {
         visit(URL)
         categorynav()
     })
+
+    it('Can Navigate to The Wishlist', () => {
+        visit(URL)
+        wishlistnav()
+        
+    })
 })
 
 //Navigates to the website itself
@@ -50,8 +56,18 @@ function categorynav() {
         .click()
     cy.get('.open > .dropdown-menu > .see-all')
         .click()
-             
+}
 
+function wishlistnav() {
+    cy.get('#content > .row > :nth-child(2)')
+        .find('[data-original-title="Add to Wish List"]')
+        .click()
+    cy.get('#wishlist-total > .fa')
+        .click()
+            
+        
 
 }
+
+
 
