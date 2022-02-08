@@ -10,17 +10,21 @@ context('Functionality Tests', () => {
         
     })
 
-    // it('Can Navigate to The Wishlist', () => {
-    //     visit(URL)
+    //If this test "fails" due to pagespeed not being defined, that is the fault of the application itself and not Cypress.
+    //If you see the item in the shopping cart after the test has finished, then this test has passed.
+    it('Cart Is Functional', () => {
+        visit(URL)
+        cart()
         
         
-    // })
+    })
 
-    // it('Can Navigate to The Cart', () => {
-    //     visit(URL)
+    it('Account Registration Is Functional', () => {
+        visit(URL)
+        registration()
         
 
-    // })
+    })
 })
 
 //Navigates to the website itself
@@ -35,4 +39,44 @@ function wishlist() {
     cy.get('#wishlist-total')
         .click()    
 
+}
+
+function cart() {
+    cy.get('#content > .row > :nth-child(4)')
+        .find('span[class="hidden-xs hidden-sm hidden-md"]')
+        .invoke('show')
+        .click({force: true})
+    cy.get('#input-option226')
+        .select('16') 
+    cy.get('#button-cart')
+        .click()
+    cy.get(':nth-child(5) > a > .fa')
+        .click()         
+}
+
+function registration() {
+    cy.get('.list-inline > .dropdown > .dropdown-toggle')
+        .find('span[class="hidden-xs hidden-sm hidden-md"]')
+        .invoke('show')
+        .click({force: true})
+    cy.get('.dropdown-menu > :nth-child(1) > a')
+        .click()
+    cy.get('#input-firstname')
+        .type('Shirley')
+    cy.get('#input-lastname')
+        .type('Sasser')
+    cy.get('#input-email')
+        .type('kel@gmail.com')
+    cy.get('#input-telephone')
+        .type('919-999-9990')
+    cy.get('#input-password')
+        .type('Pass')
+    cy.get('#input-confirm')
+        .type('Pass')
+    cy.get('[type="checkbox"]')
+        .check()
+    cy.get('.pull-right > .btn')
+        .click()
+
+                
 }
