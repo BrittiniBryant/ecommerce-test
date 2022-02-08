@@ -4,22 +4,23 @@ context('Functionality Tests', () => {
     var URL = 'http://opencart.abstracta.us/'
 
     
-    it('Can Navigate To Each Category', () => {
+    it('Wishlist Is Functional', () => {
         visit(URL)
+        wishlist()
         
     })
 
-    it('Can Navigate to The Wishlist', () => {
-        visit(URL)
+    // it('Can Navigate to The Wishlist', () => {
+    //     visit(URL)
         
         
-    })
+    // })
 
-    it('Can Navigate to The Cart', () => {
-        visit(URL)
+    // it('Can Navigate to The Cart', () => {
+    //     visit(URL)
         
 
-    })
+    // })
 })
 
 //Navigates to the website itself
@@ -28,6 +29,10 @@ function visit(URL) {
 }
 
 function wishlist() {
-    cy.get('#product-layout col-lg-3 col-md-3 col-sm-6 col-xs-12')
-    
+    cy.get('#content > .row > :nth-child(3)')
+        .find('[data-original-title="Add to Wish List"]')
+        .click()
+    cy.get('#wishlist-total')
+        .click()    
+
 }
