@@ -79,7 +79,7 @@ function cartnav() {
     cy.get('#content > .row > :nth-child(1)')
         .find('span[class="hidden-xs hidden-sm hidden-md"]')
         .invoke('show')
-        .click()
+        .click({force: true})
 }
 
 
