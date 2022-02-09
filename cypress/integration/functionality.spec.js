@@ -6,26 +6,29 @@ context('Functionality Tests', () => {
     
     it('Wishlist Is Functional', () => {
         visit(URL)
-        wishlist()
-        
+        wishlist()    
     })
 
     //If this test "fails" due to pagespeed not being defined, that is the fault of the application itself and not Cypress.
     //If you see the item in the shopping cart after the test has finished, then this test has passed.
     it('Cart Is Functional', () => {
         visit(URL)
-        cart()
-        
-        
+        cart()   
     })
 
+    //You can't create another account with the same information, so it's best to change the email/password each time you want
+    //To run this test.
     it('Account Registration Is Functional', () => {
         visit(URL)
         registration()
-        
+    })
 
+    it('Login Is Functional', () => {
+        visit(URL)
+        login()
     })
 })
+
 
 //Navigates to the website itself
 function visit(URL) {
@@ -38,7 +41,6 @@ function wishlist() {
         .click()
     cy.get('#wishlist-total')
         .click()    
-
 }
 
 function cart() {
@@ -76,7 +78,20 @@ function registration() {
     cy.get('[type="checkbox"]')
         .check()
     cy.get('.pull-right > .btn')
-        .click()
+        .click()                
+}
 
-                
+function login() {
+    cy.get('.list-inline > .dropdown > .dropdown-toggle')
+        .find('span[class="hidden-xs hidden-sm hidden-md"]')
+        .invoke('show')
+        .click({force: true})
+    cy.get('.dropdown-menu > :nth-child(2) > a')
+        .click()
+    cy.get('#input-email')
+        .type('jubalee@engineer.com')
+    cy.get('#input-password')
+        .type('Pass')
+    cy.get('form > .btn')
+        .click()
 }
